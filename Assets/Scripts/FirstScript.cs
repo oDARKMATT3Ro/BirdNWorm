@@ -8,6 +8,7 @@ public class FirstScript : MonoBehaviour {
     public int count;
     public string message;
     private bool finished;
+    public GameObject the_aliveworm;
 
     // Use this for initialization
     void Start() {
@@ -84,9 +85,17 @@ public class FirstScript : MonoBehaviour {
         transform.localScale = thescale;        // set the transform's scale to the proper value
     }
 
-
     int double_it(int input_number) {
         var temp = input_number * 2;
         return temp;
+    }
+
+    void OnCollisionEnter2D (Collision2D what_the_bird_hit)
+    {
+        if (what_the_bird_hit.gameObject.name == "theworm")
+        {
+            Debug.Log("OnCollisionEnter2D was called");
+            the_aliveworm.SetActive(false); // this will hide the worm
+        }
     }
 }
