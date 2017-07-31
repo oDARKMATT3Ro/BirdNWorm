@@ -9,6 +9,7 @@ public class FirstScript : MonoBehaviour {
     public string message;
     private bool finished;
     public GameObject the_aliveworm;
+    public GameObject the_deadworm;
 
     // Use this for initialization
     void Start() {
@@ -51,13 +52,13 @@ public class FirstScript : MonoBehaviour {
         if (Input.GetKey("right"))
         {
             Flip("right");
-            transform.Translate(.1f, 0f, 0f);
+            transform.Translate(.2f, 0f, 0f);
         }
 
         if (Input.GetKey("left"))
         {
             Flip("left");
-            transform.Translate(-.1f, 0f, 0f);
+            transform.Translate(-.2f, 0f, 0f);
         }
         if (Input.GetKey("up"))
         {
@@ -96,6 +97,14 @@ public class FirstScript : MonoBehaviour {
         {
             Debug.Log("OnCollisionEnter2D was called");
             the_aliveworm.SetActive(false); // this will hide the worm
+            the_deadworm.SetActive(true); // this will unhide the dead worm
+        }
+
+        if (what_the_bird_hit.gameObject.name == "launchtree")
+        {
+            Debug.Log("OnCollisionEnter2D was called");
+            the_aliveworm.SetActive(true); // this will unhide the worm
+            the_deadworm.SetActive(false); // this will hide the dead worm
         }
     }
 }
